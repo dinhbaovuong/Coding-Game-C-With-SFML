@@ -5,12 +5,19 @@
 #include <iostream>
 #include <Windows.h>
 #include "Player.h"
+#include "Threat.h"
+#include <list>
 
 class Game
 {
 private:
     sf::RenderWindow*           m_window;
+    sf::Texture                 m_texture_threat;
     Player*                     m_player;
+
+
+    std::list<Threat>           m_threat;
+
 public:
     Game(sf::RenderWindow* window);
 

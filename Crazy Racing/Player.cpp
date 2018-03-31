@@ -1,31 +1,57 @@
 #include "Player.h"
 
-Player::Player(sf::RenderWindow* window)
+Player::Player(sf::RenderWindow* window) : m_countHeart(5)
 {
     this->m_window = window;
     this->m_window->setMouseCursorVisible(false);
 
-    this->m_texture.loadFromFile("Assets/Texture/Car_4.png");
-    this->m_texture.setSmooth(true);
+    this->m_texture_car.loadFromFile("Assets/Texture/Car_4.png");
+    this->m_texture_car.setSmooth(true);
 
-    this->m_sprite.setTexture(this->m_texture);
-    this->m_sprite.setOrigin(this->m_texture.getSize().x / 2, this->m_texture.getSize().y / 2);
+    this->m_sprite_car.setTexture(this->m_texture_car);
+    this->m_sprite_car.setOrigin(this->m_texture_car.getSize().x / 2, this->m_texture_car.getSize().y / 2);
+    this->m_sprite_car.setPosition(150, 400);
+
+    this->m_texture_heart.loadFromFile("Assets/Texture/Heart.png");
+    this->m_texture_heart.setSmooth(true);
+    this->m_sprite_heart.setTexture(this->m_texture_heart);
 }
 
 void Player::update()
 {
-    sf::Vector2i mouse_position = sf::Mouse::getPosition(*this->m_window);
-    
-    mouse_position.y = 500;
-    if (mouse_position.x <= 0)
-        mouse_position.x = 25;
-    if (mouse_position.x >= 800)
-        mouse_position.x = 775;
+    sf::Vector2f car_position = this->m_sprite_car.getPosition();
 
-    this->m_sprite.setPosition(mouse_position.x, mouse_position.y);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        car_position.x -= 5;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        car_position.x += 5;
+
+    if (car_position.x <= 25)
+        car_position.x = 25;
+    if (car_position.x >= 275)
+        car_position.x = 275;
+
+    this->m_sprite_car.setPosition(car_position.x, car_position.y);
 }
 
 void Player::draw()
 {
-    this->m_window->draw(this->m_sprite);
+    for (int i = 0; i < this->m_countHeart; i++)
+    {
+
+        this->m_sprite_heart.setPosition(0 + i * 15, 0);
+        this->m_window->draw(this->m_sprite_heart);
+    }
+
+    this->m_window->draw(this->m_sprite_car);
+}
+
+int& Player::getCountHeart()
+{
+    return this->m_countHeart;
+}
+
+sf::Vector2f Player::getPosition()
+{
+    return this->m_sprite_car.getPosition();
 }

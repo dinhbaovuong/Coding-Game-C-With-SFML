@@ -5,8 +5,10 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Crazy Racing", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(300, 500), "Crazy Racing", sf::Style::Close);
     window.setFramerateLimit(60);
+
+    std::srand(time(NULL));
 
     Game game(&window);
 
