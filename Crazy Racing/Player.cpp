@@ -39,7 +39,7 @@ void Player::draw()
     for (int i = 0; i < this->m_countHeart; i++)
     {
 
-        this->m_sprite_heart.setPosition(0 + i * 15, 0);
+        this->m_sprite_heart.setPosition(5 + i * 15, 5);
         this->m_window->draw(this->m_sprite_heart);
     }
 

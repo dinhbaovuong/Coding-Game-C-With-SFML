@@ -10,7 +10,9 @@ Threat::Threat(sf::RenderWindow* window,sf::Texture& texture)
     this->m_sprite.setRotation(180);
 
     float x = std::rand() % 250 + 25;
-    this->m_sprite.setPosition(x, 0);
+    float y = std::rand() % 10;
+    this->m_sprite.setPosition(x, -y);
+    //std::cout << m_sprite.getPosition().y << "\n";
 }
 
 void Threat::update()
