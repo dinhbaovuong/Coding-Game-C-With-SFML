@@ -10,7 +10,7 @@ Player::Player(sf::RenderWindow* window) : m_countHeart(5)
 
     this->m_sprite_car.setTexture(this->m_texture_car);
     this->m_sprite_car.setOrigin(this->m_texture_car.getSize().x / 2, this->m_texture_car.getSize().y / 2);
-    this->m_sprite_car.setPosition(150, 400);
+    this->m_sprite_car.setPosition(150, 450);
 
     this->m_texture_heart.loadFromFile("Assets/Texture/Heart.png");
     this->m_texture_heart.setSmooth(true);

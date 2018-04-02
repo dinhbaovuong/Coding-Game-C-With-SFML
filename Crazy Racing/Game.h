@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include "Player.h"
 #include "Threat.h"
+#include "Animation.h"
 #include <list>
 
 class Game
@@ -15,6 +16,8 @@ private:
     sf::Texture                 m_texture_threat_1;
     sf::Texture                 m_texture_threat_2;
     sf::Texture                 m_texture_threat_3;
+
+    sf::Texture                 m_texture_explosion;
     Player*                     m_player;
 
     sf::Clock                   m_clock;
@@ -27,10 +30,12 @@ private:
     sf::Font                    m_font;
     sf::Text                    m_text;
 
+    std::list<Animation>        m_explosion;
+
 public:
     Game(sf::RenderWindow* window);
 
-    void                        update();
+    bool                        update();
     void                        draw();
 };
 

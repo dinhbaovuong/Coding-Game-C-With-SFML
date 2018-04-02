@@ -30,8 +30,12 @@ int main()
         if (checkChooseWindow)
         {
             window.clear();
-            game.update();
             game.draw();
+            if (!game.update())
+            {
+                window.close();
+            }
+            
             window.display();
         }
     }
