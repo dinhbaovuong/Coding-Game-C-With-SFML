@@ -15,6 +15,7 @@ Player::Player(sf::RenderWindow* window) : m_countHeart(5)
     this->m_texture_heart.loadFromFile("Assets/Texture/Heart.png");
     this->m_texture_heart.setSmooth(true);
     this->m_sprite_heart.setTexture(this->m_texture_heart);
+
 }
 
 void Player::update()

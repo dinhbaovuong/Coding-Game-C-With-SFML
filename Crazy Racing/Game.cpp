@@ -18,6 +18,10 @@ Game::Game(sf::RenderWindow* window) : m_score(0)
     this->m_texture_explosion.loadFromFile("Assets/Texture/Explosion.png");
     this->m_texture_explosion.setSmooth(true);
 
+    this->m_texture_road.loadFromFile("Assets/Texture/Road.png");
+    this->m_texture_road.setSmooth(true);
+    this->m_sprite_road.setTexture(this->m_texture_road);
+
     this->m_threat.push_back(Threat(this->m_window, this->m_texture_threat_1));
 
     this->m_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
@@ -26,6 +30,12 @@ Game::Game(sf::RenderWindow* window) : m_score(0)
     this->m_text.setCharacterSize(15);
     this->m_text.setPosition(200, 0);
 }
+
+Game::~Game()
+{
+    delete this->m_player;
+}
+
 
 bool Game::update()
 {
@@ -100,12 +110,17 @@ bool Game::update()
 
     if (this->m_player->getCountHeart() >= 0)
         return true;
-    else return false;
+    else
+    {
+        std::string Information = "Your Score: " + std::to_string(this->m_score);
+        if (MessageBox(NULL, Information.c_str(), "Game Over", MB_OK) == IDOK)
+        return false;
+    }
 }
 
 void Game::draw()
 {
-
+    this->m_window->draw(this->m_sprite_road);
     if (this->m_threat.size() > 0)
     {
         for (std::list<Threat>::iterator it = this->m_threat.begin(); it != this->m_threat.end(); it++)

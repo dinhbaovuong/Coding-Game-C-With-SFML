@@ -16,9 +16,12 @@ private:
     sf::Texture                 m_texture_threat_1;
     sf::Texture                 m_texture_threat_2;
     sf::Texture                 m_texture_threat_3;
+    sf::Texture                 m_texture_road;
 
     sf::Texture                 m_texture_explosion;
     Player*                     m_player;
+
+    sf::Sprite                  m_sprite_road;
 
     sf::Clock                   m_clock;
     sf::Time                    m_time;
@@ -34,7 +37,7 @@ private:
 
 public:
     Game(sf::RenderWindow* window);
-
+    ~Game();
     bool                        update();
     void                        draw();
 };
